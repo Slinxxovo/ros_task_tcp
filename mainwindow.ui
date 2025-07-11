@@ -1,24 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MainWindow</string>
+  <property name="windowTitle">
+   <string>任务调度与监控系统</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="3,1">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutTop" stretch="2,1">
+      <!-- 左侧地图视图 -->
+      <item>
+       <widget class="QGraphicsView" name="graphicsViewMap"/>
+      </item>
+      <!-- 右侧状态信息与按钮 -->
+      <item>
+       <layout class="QVBoxLayout" name="rightPanelLayout">
+        <item>
+         <widget class="QLabel" name="labelStatus">
+          <property name="text">
+           <string>位置: (0,0)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelBattery">
+          <property name="text">
+           <string>电量: 100%</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelTaskState">
+          <property name="text">
+           <string>任务状态: 等待中</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnSendTask">
+          <property name="text">
+           <string>下发任务</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnStartMonitor">
+          <property name="text">
+           <string>开始监控</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnExportLog">
+          <property name="text">
+           <string>导出日志</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <!-- 底部日志输出 -->
+    <item>
+     <widget class="QPlainTextEdit" name="plainTextLog">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="placeholderText">
+       <string>运行日志输出...</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections/>
 </ui>
