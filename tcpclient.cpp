@@ -4,8 +4,11 @@
 TcpClient::TcpClient(QObject *parent) : QObject(parent)
 {
 
-    socket = new QTcpSocket(this);
-    socket->connectToHost("127.0.0.1",9999);
+}
+
+void TcpClient::connectToServer(const QString& host, int port)
+{
+    socket->connectToHost(host, port);
 }
 
 void TcpClient::sendTask(const TaskCommand &task)

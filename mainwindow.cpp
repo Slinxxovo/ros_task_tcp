@@ -17,12 +17,16 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->graphicsViewMap->setScene(scene);
 
+    //初始化TcpServer
+    server = new TcpServer(this);
+    server->start(9999); //启动监听端口9999
     connect(server,&TcpServer::statusReceived,this,&MainWindow::onRobotStatus);
 
-
+    //初始化TcpClient
     client = new TcpClient(this);
-
-       connect(client, &TcpClient::logMessage, this, &MainWindow::appendLog);
+    client->connectToServer("127.0.0.1",9999);
+    connect(client, &TcpClient::logMessage, this, &MainWindow::appendLog);
+    
        connect(ui->btnSendTask,&QPushButton::clicked,this,&MainWindow::sendTask);
        connect(ui->btnStartMonitor,&QPushButton::clicked,this,&MainWindow::startMonitor);
 
@@ -83,7 +87,8 @@ void MainWindow::updateStatus(const RobotStatus &status)
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    QPointF scenePos = ui->graphicsViewMap->mapToScene(event->pos());
+    
+    QPointF scenePos = ui->graphicsViewMap->mapToScene(ui->graphicsViewMap->mapFromGlobal(event->globalPos()));
     scene->addEllipse(scenePos.x(),scenePos.y(),6,6,QPen(Qt::blue),QBrush(Qt::blue));
     taskpoints.append(QPoint(scenePos.x(),scenePos.y()));
 }

@@ -39,4 +39,5 @@ void TcpServer::sendStatus()
     out<<status.posX<<status.posY<<status.battery<<status.taskStates;
 
     socket->write(data);
+    emit statusReceived(status);
 }
