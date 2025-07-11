@@ -26,10 +26,17 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        tcpclient.cpp \
+        tcpserver.cpp \
+        utils.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        task_protocol.h \
+        tcpclient.h \
+        tcpserver.h \
+        utils.h
 
 FORMS += \
         mainwindow.ui
